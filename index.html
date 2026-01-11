@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WMS - Warehouse Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-cube fa-2x"></i>
+            <h1>SmartWMS</h1>
+        </div>
+        <a href="index.html" class="nav-link active">
+            <i class="fas fa-home"></i> หน้าหลัก
+        </a>
+        <a href="inventory.html" class="nav-link">
+            <i class="fas fa-boxes"></i> รายการสินค้า
+        </a>
+        <a href="#" class="nav-link">
+            <i class="fas fa-truck-loading"></i> รับสินค้าเข้า
+        </a>
+        <a href="#" class="nav-link">
+            <i class="fas fa-dolly"></i> เบิกสินค้าออก
+        </a>
+        <a href="#" class="nav-link">
+            <i class="fas fa-chart-line"></i> รายงาน
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <i class="fas fa-bars menu-toggle" id="menuToggle"></i>
+                <h2>Dashboard ภาพรวม</h2>
+            </div>
+            <div class="user-profile">
+                <!-- User profile placeholder -->
+                <i class="fas fa-user-circle fa-2x" style="color: var(--primary);"></i>
+            </div>
+        </header>
+
+        <!-- Stats Cards -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-info">
+                    <h3>สินค้าทั้งหมด</h3>
+                    <p id="totalStock">0</p>
+                </div>
+                <div class="stat-icon">
+                    <i class="fas fa-box"></i>
+                </div>
+            </div>
+            <div class="stat-card warning">
+                <div class="stat-info">
+                    <h3>สินค้าใกล้หมด (Low Stock)</h3>
+                    <p id="lowStock">0</p>
+                </div>
+                <div class="stat-icon" style="color: var(--warning);">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+            </div>
+            <div class="stat-card success">
+                <div class="stat-info">
+                    <h3>รายการเคลื่อนไหววันนี้</h3>
+                    <p id="todayTransactions">0</p>
+                </div>
+                <div class="stat-icon" style="color: var(--success);">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Transactions -->
+        <section class="table-container">
+            <div class="section-header">
+                <h3><i class="fas fa-history"></i> รายการเคลื่อนไหวล่าสุด</h3>
+                <button class="btn btn-sm btn-primary">ดูทั้งหมด</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>วันที่/เวลา</th>
+                        <th>รหัสสินค้า (SKU)</th>
+                        <th>ชื่อสินค้า</th>
+                        <th>ประเภท</th>
+                        <th>จำนวน</th>
+                    </tr>
+                </thead>
+                <tbody id="transactionTableBody">
+                    <!-- JS will populate this -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+        // Init Dashboard logic
+        document.addEventListener('DOMContentLoaded', () => {
+            window.app = new WMSApp();
+            window.app.renderDashboard();
+        });
+    </script>
+</body>
+
+</html>
